@@ -123,6 +123,9 @@ class SortingRobot:
                         # If the item in front is None, swap the item held with None
                         if self.compare_item() == None:
                             self.swap_item()
+                    # Recursively call sort method
+                    self.sort()
+        return
                 
 
 if __name__ == "__main__":
