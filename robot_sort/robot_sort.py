@@ -96,9 +96,34 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # Since the robot can only store one bit of information in terms of its light being on or off, I plan on implementing bubble sort, as we can store whether an array is sorted or not by tracking the state of the light. 
 
+        # Swap None with first item in index
+        self.swap_item()
+        # Set light to OFF to indicate that array is not sorted
+        self.set_light_off()
+        # Run the function while light is OFF, meaning array is not sorted
+        while self.light_is_on() != True:
+            # Set light to ON, indicating array is sorted
+            self.set_light_on()
+            # While you can move right...
+            while self.can_move_right() == True:
+                # Move right!
+                self.move_right()
+                # If the item held in hand is greater...
+                if self.compare_item() == 1:
+                    # Turn the light off, meaning that the array is not sorted
+                    self.set_light_off()
+                    # Swap the held item with the item in front of the robot
+                    self.swap_item()
+                    # While you can move left...
+                    while self.can_move_left() == True:
+                        # Move left!
+                        self.move_left()
+                        # If the item in front is None, swap the item held with None
+                        if self.compare_item() == None:
+                            self.swap_item()
+                
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
