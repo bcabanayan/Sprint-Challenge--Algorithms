@@ -112,15 +112,20 @@ class SortingRobot:
                 self.move_right()
                 # If the item held in hand is greater...
                 if self.compare_item() == 1:
-                    # Turn the light off, meaning that the array is not sorted
-                    self.set_light_off()
                     # Swap the held item of greater value with the item of lesser value in front of the robot...
                     self.swap_item()
                     # Then, move left...
                     self.move_left()
                     # And swap the item of lesser value back, into the lower position
                     self.swap_item()
-        return
+                    # Turn the light off, meaning that the array is not sorted
+                    self.set_light_off()
+                # If the item held in hand is lesser than or equal to...
+                if self.compare_item() == -1 or self.compare_item == 0:
+                    # Move back left
+                    self.move_left()
+                    # Swap item back
+                    self.swap_item()
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
