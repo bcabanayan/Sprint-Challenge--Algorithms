@@ -98,8 +98,6 @@ class SortingRobot:
         """
         # Since the robot can only store one bit of information in terms of its light being on or off, I plan on implementing bubble sort, as we can store whether an array is sorted or not by tracking the state of the light. 
 
-        # Swap None with first item in index
-        self.swap_item()
         # Set light to OFF to indicate that array is not sorted
         self.set_light_off()
         # Run the function while light is OFF, meaning array is not sorted
@@ -108,24 +106,39 @@ class SortingRobot:
             self.set_light_on()
             # While you can move right...
             while self.can_move_right() == True:
-                # Move right!
+                # Grab item immediately in front of robot
+                self.swap_item()
+                # Move right to sort held item
                 self.move_right()
-                # If the item held in hand is greater...
+                # If the item held in hand is greater than the item next in line...
                 if self.compare_item() == 1:
+                    # Turn the light off, meaning that the array is not sorted
+                    self.set_light_off()
                     # Swap the held item of greater value with the item of lesser value in front of the robot...
                     self.swap_item()
                     # Then, move left...
                     self.move_left()
                     # And swap the item of lesser value back, into the lower position
                     self.swap_item()
-                    # Turn the light off, meaning that the array is not sorted
-                    self.set_light_off()
-                # If the item held in hand is lesser than or equal to...
+                    # Then, move right to sort next element
+                    self.move_right()
+                # If the item held in hand is lesser than or equal to the item next in line...
                 if self.compare_item() == -1 or self.compare_item == 0:
                     # Move back left
                     self.move_left()
-                    # Swap item back
+                    # Swap lesser or equal value item back, since it should not be moved forward
                     self.swap_item()
+                    # Then, move right to sort next element
+                    self.move_right()
+            # If light is off, then array is not sorted, so you must...
+            if self.light_is_on != True:
+                # Return back to the beginning of the array to restart sorting;
+                while self.can_move_left():
+                    self.move_left()
+            # otherwise, if light IS on, then list is fully sorted!
+
+
+                
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
