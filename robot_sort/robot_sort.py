@@ -114,17 +114,12 @@ class SortingRobot:
                 if self.compare_item() == 1:
                     # Turn the light off, meaning that the array is not sorted
                     self.set_light_off()
-                    # Swap the held item with the item in front of the robot
+                    # Swap the held item of greater value with the item of lesser value in front of the robot...
                     self.swap_item()
-                    # While you can move left...
-                    while self.can_move_left() == True:
-                        # Move left!
-                        self.move_left()
-                        # If the item in front is None, swap the item held with None
-                        if self.compare_item() == None:
-                            self.swap_item()
-                    # Recursively call sort method
-                    self.sort()
+                    # Then, move left...
+                    self.move_left()
+                    # And swap the item of lesser value back, into the lower position
+                    self.swap_item()
         return
 
 if __name__ == "__main__":
