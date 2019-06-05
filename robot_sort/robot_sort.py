@@ -126,7 +126,6 @@ class SortingRobot:
                     # Recursively call sort method
                     self.sort()
         return
-                
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
