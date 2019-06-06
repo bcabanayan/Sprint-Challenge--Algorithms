@@ -123,16 +123,16 @@ class SortingRobot:
                     # Then, move right to sort next element
                     self.move_right()
                 # If the item held in hand is lesser than or equal to the item next in line...
-                if self.compare_item() == -1 or self.compare_item == 0:
+                if self.compare_item() == -1 or self.compare_item() == 0:
                     # Move back left
                     self.move_left()
                     # Swap lesser or equal value item back, since it should not be moved forward
                     self.swap_item()
                     # Then, move right to sort next element
-                    self.move_right()
+                    self.move_right()                
             # If light is off, then array is not sorted, so you must...
-            if self.light_is_on != True:
-                # Return back to the beginning of the array to restart sorting;
+            if self.light_is_on() != True:
+                # ...return back to the beginning of the array to restart sorting;
                 while self.can_move_left():
                     self.move_left()
             # otherwise, if light IS on, then list is fully sorted!
